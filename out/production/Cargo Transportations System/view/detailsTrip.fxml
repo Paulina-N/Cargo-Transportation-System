@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="558.0" prefWidth="458.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxController.DetailsTrip">
+   <children>
+      <Text layoutX="184.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trip Details">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label layoutX="76.0" layoutY="121.0" text="Title:" />
+      <TextField fx:id="titleField" layoutX="76.0" layoutY="139.0" />
+      <Label layoutX="277.0" layoutY="121.0" text="Departure:" />
+      <TextField fx:id="departureField" layoutX="277.0" layoutY="139.0" />
+      <Label layoutX="75.0" layoutY="165.0" text="Stops:" />
+      <TextField fx:id="stopsField" layoutX="76.0" layoutY="183.0" />
+      <Label layoutX="277.0" layoutY="165.0" text="Destination:" />
+      <TextField fx:id="destinationField" layoutX="277.0" layoutY="183.0" />
+      <Label layoutX="75.0" layoutY="209.0" text="Date:" />
+      <DatePicker fx:id="dateField" layoutX="75.0" layoutY="227.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="277.0" layoutY="209.0" text="Status:" />
+      <ChoiceBox fx:id="statusField" layoutX="277.0" layoutY="227.0" prefWidth="150.0" />
+      <Label layoutX="75.0" layoutY="253.0" text="Driver:" />
+      <ChoiceBox fx:id="driverField" layoutX="75.0" layoutY="270.0" prefWidth="150.0" />
+      <Label layoutX="276.0" layoutY="252.0" text="Truck:" />
+      <ChoiceBox fx:id="truckField" layoutX="277.0" layoutY="270.0" prefWidth="150.0" />
+      <Label layoutX="75.0" layoutY="296.0" text="Responsible:" />
+      <ChoiceBox fx:id="responsibleField" layoutX="75.0" layoutY="314.0" prefWidth="150.0" />
+      <Button fx:id="createBtn" layoutX="178.0" layoutY="431.0" mnemonicParsing="false" onAction="#create" prefHeight="26.0" prefWidth="94.0" text="Create trip" visible="false" />
+      <Button fx:id="saveBtn" layoutX="178.0" layoutY="431.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="94.0" text="Save" />
+      <Button fx:id="deleteTripBtn" layoutX="178.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteTrip" prefHeight="26.0" prefWidth="94.0" text="Delete trip" />
+   </children>
+</AnchorPane>

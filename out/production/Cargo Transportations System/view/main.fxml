@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<TabPane fx:id="allTabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxController.Main">
+  <tabs>
+    <Tab text="User Management">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="driverList" layoutX="14.0" layoutY="36.0" onMouseClicked="#driverClick" prefHeight="450.0" prefWidth="200.0" />
+                  <ListView fx:id="managerList" layoutX="228.0" layoutY="36.0" onMouseClicked="#managerClick" prefHeight="450.0" prefWidth="200.0" />
+                  <Button fx:id="showDetailsBtnDriver" disable="true" layoutX="563.0" layoutY="105.0" mnemonicParsing="false" onAction="#showDetailsDriver" prefHeight="26.0" prefWidth="80.0" text="View details" />
+                  <Button fx:id="showDetailsBtnManager" disable="true" layoutX="563.0" layoutY="105.0" mnemonicParsing="false" onAction="#showDetailsManager" prefHeight="26.0" prefWidth="80.0" text="View details" />
+                  <Text layoutX="96.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drivers" />
+                  <Text layoutX="301.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Managers" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab text="Vehicles">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="544.0" layoutY="106.0" mnemonicParsing="false" onAction="#showTruckDetails" text="View details" />
+                  <TableView fx:id="truckList" layoutX="14.0" layoutY="37.0" prefHeight="450.0" prefWidth="401.0">
+                    <columns>
+                      <TableColumn fx:id="manufacturer" prefWidth="100.0" text="Manufacturer" />
+                      <TableColumn fx:id="model" prefWidth="100.0" text="Model" />
+                        <TableColumn fx:id="regPlate" prefWidth="100.0" text="Plate Number" />
+                        <TableColumn fx:id="year" prefWidth="100.0" text="Year" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="544.0" layoutY="138.0" mnemonicParsing="false" onAction="#createTruck" prefHeight="26.0" prefWidth="80.0" text="Create new" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Trips">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView fx:id="tripList" layoutX="14.0" layoutY="35.0" prefHeight="455.0" prefWidth="679.0">
+                    <columns>
+                      <TableColumn fx:id="title" prefWidth="75.0" text="Title" />
+                      <TableColumn fx:id="departure" prefWidth="75.0" text="Departure" />
+                        <TableColumn fx:id="stops" prefWidth="75.0" text="Stops" />
+                        <TableColumn fx:id="destination" prefWidth="75.0" text="Destination" />
+                        <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
+                        <TableColumn fx:id="status" prefWidth="75.0" text="Status" />
+                        <TableColumn fx:id="driver" prefWidth="75.0" text="Driver" />
+                        <TableColumn fx:id="truck" prefWidth="75.0" text="Truck" />
+                        <TableColumn fx:id="responsible" prefWidth="75.0" text="Responsible" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="335.0" layoutY="512.0" mnemonicParsing="false" onAction="#showTripDetails" text="View details" />
+                  <Button layoutX="335.0" layoutY="544.0" mnemonicParsing="false" onAction="#createTrip" prefHeight="26.0" prefWidth="80.0" text="Create new" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
