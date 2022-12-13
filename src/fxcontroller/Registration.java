@@ -1,4 +1,4 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
 import javafx.fxml.FXML;

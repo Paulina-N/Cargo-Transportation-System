@@ -1,4 +1,4 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
 import javafx.fxml.FXML;
@@ -24,13 +24,10 @@ public class Login {
     public CheckBox managerCheck;
 
     EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("CargoTransportationsSystem");
-    Hibernate hibernate = new Hibernate(entityManagerFactory);
-
-    public void isManager() {
-    }
+    Hibernate userhib = new Hibernate(entityManagerFactory);
 
     public void loginToAccount() throws IOException {
-        User user = hibernate.getUserByLoginData("username", "password", usernameField.getText(), passwordField.getText(), managerCheck.isSelected());
+        User user = userhib.getUserByLoginData("username", "password", usernameField.getText(), passwordField.getText(), managerCheck.isSelected());
         if (user != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("../view/main.fxml"));
             Parent parent = fxmlLoader.load();

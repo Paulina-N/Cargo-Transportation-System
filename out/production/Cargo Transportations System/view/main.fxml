@@ -7,9 +7,10 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<TabPane fx:id="allTabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxController.Main">
+<TabPane fx:id="allTabs" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxcontroller.Main">
   <tabs>
     <Tab text="User Management">
       <content>
@@ -28,7 +29,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="544.0" layoutY="106.0" mnemonicParsing="false" onAction="#showTruckDetails" text="View details" />
+                  <Button fx:id="viewDetailsVehicleBtn" layoutX="544.0" layoutY="106.0" mnemonicParsing="false" onAction="#showTruckDetails" text="View details" />
                   <TableView fx:id="truckList" layoutX="14.0" layoutY="37.0" prefHeight="450.0" prefWidth="401.0">
                     <columns>
                       <TableColumn fx:id="manufacturer" prefWidth="100.0" text="Manufacturer" />
@@ -37,7 +38,7 @@
                         <TableColumn fx:id="year" prefWidth="100.0" text="Year" />
                     </columns>
                   </TableView>
-                  <Button layoutX="544.0" layoutY="138.0" mnemonicParsing="false" onAction="#createTruck" prefHeight="26.0" prefWidth="80.0" text="Create new" />
+                  <Button fx:id="createVehicleBtn" layoutX="544.0" layoutY="138.0" mnemonicParsing="false" onAction="#createTruck" prefHeight="26.0" prefWidth="80.0" text="Create new" />
                </children>
             </AnchorPane>
         </content>
@@ -61,6 +62,35 @@
                   </TableView>
                   <Button layoutX="335.0" layoutY="512.0" mnemonicParsing="false" onAction="#showTripDetails" text="View details" />
                   <Button layoutX="335.0" layoutY="544.0" mnemonicParsing="false" onAction="#createTrip" prefHeight="26.0" prefWidth="80.0" text="Create new" />
+                  <Button layoutX="595.0" layoutY="532.0" mnemonicParsing="false" onAction="#showStats" prefHeight="26.0" prefWidth="78.0" text="Stats" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="Forum">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="forumList" layoutX="46.0" layoutY="49.0" prefHeight="458.0" prefWidth="310.0" />
+                  <Text layoutX="181.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forums" />
+                  <Button layoutX="522.0" layoutY="83.0" mnemonicParsing="false" onAction="#createForum" text="Create forum" />
+                  <Button layoutX="525.0" layoutY="127.0" mnemonicParsing="false" onAction="#openForum" text="Open forum" />
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="My Account">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Text fx:id="currentUserHeading" layoutX="257.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" textAlignment="CENTER" wrappingWidth="232.43865966796875" AnchorPane.leftAnchor="257.0" AnchorPane.rightAnchor="260.9613403320312">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="accountDetailsBtn" layoutX="325.0" layoutY="90.0" mnemonicParsing="false" onAction="#accountDetails" text="Account details" />
+                  <Button fx:id="deleteAccountBtn" layoutX="325.0" layoutY="126.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="26.0" prefWidth="100.0" text="Delete account" />
+                  <Button fx:id="logOutBtn" layoutX="325.0" layoutY="203.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="100.0" text="Log out" />
                </children>
             </AnchorPane>
         </content>

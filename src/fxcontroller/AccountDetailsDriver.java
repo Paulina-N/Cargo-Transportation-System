@@ -1,4 +1,4 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
 import javafx.embed.swing.SwingFXUtils;
@@ -58,7 +58,7 @@ public class AccountDetailsDriver extends Window {
         this.selectedUser = selectedUser;
         this.hibernate = new Hibernate(entityManagerFactory);
 
-        if (currentUser.getClass() == Driver.class) {
+        if (currentUser.getClass() == Driver.class && currentUser != selectedUser) {
             updateDetailsBtn.setVisible(false);
             saveBtn.setVisible(false);
             deleteUserBtn.setVisible(false);
@@ -132,7 +132,7 @@ public class AccountDetailsDriver extends Window {
             image2Exists = true;
         }
         hibernate.updateUser(user);
-        main.setData(entityManagerFactory, currentUser);
+        main.setData(entityManagerFactory);
     }
 
     public void updateParentLists(Main main) {
@@ -142,7 +142,7 @@ public class AccountDetailsDriver extends Window {
     public void deleteUser() {
         Driver user = (Driver) hibernate.findById(selectedUser, selectedUser.getId());
         hibernate.removeUser(user);
-        main.setData(entityManagerFactory, currentUser);
+        main.setData(entityManagerFactory);
         Stage stage = (Stage) deleteUserBtn.getScene().getWindow();
         stage.close();
     }

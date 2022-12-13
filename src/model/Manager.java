@@ -35,6 +35,6 @@ public class Manager extends User implements Serializable {
     }
 
     public Manager (String name, String surname, String username, String email, String password) {
-        super(password, name, surname, username, email);
+        super(name, surname, username, email, password);
     }
 }

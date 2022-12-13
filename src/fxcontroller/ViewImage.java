@@ -1,4 +1,4 @@
-package fxController;
+package fxcontroller;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

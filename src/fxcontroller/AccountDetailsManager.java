@@ -1,4 +1,4 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
 import javafx.embed.swing.SwingFXUtils;
@@ -117,7 +117,7 @@ public class AccountDetailsManager extends Window {
             imageExists = true;
         }
         hibernate.updateUser(user);
-        main.setData(entityManagerFactory, currentUser);
+        main.setData(entityManagerFactory);
     }
 
     public void updateParentLists(Main main) {
@@ -127,7 +127,7 @@ public class AccountDetailsManager extends Window {
     public void deleteUser() {
         Manager user = (Manager) hibernate.findById(selectedUser, selectedUser.getId());
         hibernate.removeUser(user);
-        main.setData(entityManagerFactory, currentUser);
+        main.setData(entityManagerFactory);
         Stage stage = (Stage) deleteUserBtn.getScene().getWindow();
         stage.close();
     }

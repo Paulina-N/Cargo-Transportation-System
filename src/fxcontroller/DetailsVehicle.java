@@ -1,10 +1,11 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
 import model.Vehicle;
 
 import javax.persistence.EntityManagerFactory;
@@ -22,6 +23,7 @@ public class DetailsVehicle {
     private Vehicle selectedVehicle;
     private Hibernate hibernate;
     private Main main;
+    private User currentUser;
 
     public void createEntity(EntityManagerFactory entityManagerFactory, boolean create) {
         this.entityManagerFactory = entityManagerFactory;
@@ -32,10 +34,11 @@ public class DetailsVehicle {
         }
     }
 
-    public void setData(EntityManagerFactory entityManagerFactory, Vehicle selectedVehicle) {
+    public void setData(EntityManagerFactory entityManagerFactory, Vehicle selectedVehicle, User currentUser) {
         this.entityManagerFactory = entityManagerFactory;
         this.selectedVehicle = selectedVehicle;
         this.hibernate = new Hibernate(entityManagerFactory);
+        this.currentUser = currentUser;
 
         Vehicle vehicle = (Vehicle) hibernate.findById(selectedVehicle, selectedVehicle.getId());
         fillFields(vehicle);

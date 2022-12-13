@@ -30,6 +30,12 @@ public class Hibernate {
     public void createTrip(Trip trip) {
         createObject(trip);
     }
+    public void createForum(Forum forum) {
+        createObject(forum);
+    }
+    public void createComment(Comment comment) {
+        createObject(comment);
+    }
 
     public void updateVehicle(Vehicle vehicle) {
         updateObject(vehicle);
@@ -40,6 +46,12 @@ public class Hibernate {
     public void updateTrip(Trip trip) {
         updateObject(trip);
     }
+    public void updateForum(Forum forum) {
+        updateObject(forum);
+    }
+    public void updateComment(Comment comment) {
+        updateObject(comment);
+    }
 
     public void removeVehicle(Vehicle vehicle) {
         removeObject(vehicle, vehicle.getId());
@@ -49,6 +61,12 @@ public class Hibernate {
     }
     public void removeTrip(Trip trip) {
         removeObject(trip, trip.getId());
+    }
+    public void removeForum(Forum forum) {
+        removeObject(forum, forum.getId());
+    }
+    public void removeComment(Comment comment) {
+        removeObject(comment, comment.getId());
     }
 
     public Object findById(Object object, int id) {
@@ -166,6 +184,24 @@ public class Hibernate {
         return user;
     }
 
+    public User getUserByPassword(String password) {
+        entityManager = entityManagerFactory.createEntityManager();
+        User user = null;
+        try {
+            user = entityManager.createQuery(
+                            "SELECT u from Driver u WHERE u.password = :password", Driver.class).
+                    setParameter("password", password).getSingleResult();
+        } catch (NoResultException ignored) {}
+
+        try {
+            user = entityManager.createQuery(
+                            "SELECT u from Manager u WHERE u.password = :password", Manager.class).
+                    setParameter("password", password).getSingleResult();
+        } catch (NoResultException ignored) {}
+
+        return user;
+    }
+
     public User getUserByEmail(String email) {
         entityManager = entityManagerFactory.createEntityManager();
         User user = null;
@@ -182,6 +218,18 @@ public class Hibernate {
         } catch (NoResultException ignored) {}
 
         return user;
+    }
+
+    public <T> List<Comment> getForumComments(Forum forum) {
+        entityManager = entityManagerFactory.createEntityManager();
+        List<Comment> comments = null;
+        try {
+            comments = entityManager.createQuery(
+                            "SELECT u from Comment u WHERE u.forum = :forum", Comment.class).
+                    setParameter("forum", forum).getResultList();
+        } catch (NoResultException ignored) {}
+
+        return comments;
     }
 
 //    public List<User> getAllUsers() {

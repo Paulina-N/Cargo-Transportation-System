@@ -1,10 +1,7 @@
-package fxController;
+package fxcontroller;
 
 import hibernate.Hibernate;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.*;
 
@@ -29,6 +26,7 @@ public class DetailsTrip {
     private Trip selectedTrip;
     private Hibernate hibernate;
     private Main main;
+    private User currentUser;
 
     public void createEntity(EntityManagerFactory entityManagerFactory, boolean create) {
         this.entityManagerFactory = entityManagerFactory;
@@ -41,10 +39,11 @@ public class DetailsTrip {
         setChoiceBoxes();
     }
 
-    public void setData(EntityManagerFactory entityManagerFactory, Trip selectedTrip) {
+    public void setData(EntityManagerFactory entityManagerFactory, Trip selectedTrip, User currentUser) {
         this.entityManagerFactory = entityManagerFactory;
         this.selectedTrip = selectedTrip;
         this.hibernate = new Hibernate(entityManagerFactory);
+        this.currentUser = currentUser;
 
         setChoiceBoxes();
         Trip trip = (Trip) hibernate.findById(selectedTrip, selectedTrip.getId());
@@ -79,15 +78,20 @@ public class DetailsTrip {
         trip.setTruck(truckField.getValue());
         trip.setResponsible(responsibleField.getValue()); //TODO check when making a list
         hibernate.updateTrip(trip);
-        main.setData(entityManagerFactory, trip);
+        main.setData(entityManagerFactory);
     }
 
     public void deleteTrip() {
         Trip trip = (Trip) hibernate.findById(selectedTrip, selectedTrip.getId());
-        hibernate.removeTrip(trip);
-        main.setData(entityManagerFactory, trip);
-        Stage stage = (Stage) deleteTripBtn.getScene().getWindow();
-        stage.close();
+        if (trip.getStatus() == TripStatus.ONGOING) {
+            utils.fxUtils.generateAlert(Alert.AlertType.ERROR, null, "ONGOING trip can't be deleted");
+        }
+        else {
+            hibernate.removeTrip(trip);
+            main.setData(entityManagerFactory);
+            Stage stage = (Stage) deleteTripBtn.getScene().getWindow();
+            stage.close();
+        }
     }
 
     public void create() {
@@ -96,7 +100,7 @@ public class DetailsTrip {
                 destinationField.getText(), dateField.getValue(), statusField.getValue(),
                 driverField.getValue(), truckField.getValue(), responsibleField.getValue()); //TODO responsible list
         hibernate.createTrip(trip);
-        main.setData(entityManagerFactory, trip);
+        main.setData(entityManagerFactory);
         Stage stage = (Stage) createBtn.getScene().getWindow();
         stage.close();
     }
